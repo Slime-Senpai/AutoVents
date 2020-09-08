@@ -3,6 +3,7 @@
   <name>AutoVents</name>
   <author>Slime-Senpai</author>
   <packageId>SlimeSenpai.AutoVents</packageId>
+  <url>https://github.com/Slime-Senpai/AutoVents</url>
   <supportedVersions>
     <li>1.2</li>
   </supportedVersions>
