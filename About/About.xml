@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>AutoVents</name>
+  <author>Slime-Senpai</author>
+  <packageId>SlimeSenpai.AutoVents</packageId>
+  <supportedVersions>
+    <li>1.2</li>
+  </supportedVersions>
+  <description>This mod adds an automatic vent that opens and closes to try to make a room reach your desired temperature.
+It has been designed to make early game indoors growing more easy by harnessing geothermal temperature.
+Works best with Dubs Skylight.
+  </description>
+</ModMetaData>
