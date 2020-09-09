@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Auto Vents -->
+
+  <SLS_AutoVents.label>自動換気口</SLS_AutoVents.label>
+  <SLS_AutoVents.description>室温を自動的に均一化して、室内に新鮮な空気を送るための自動通気口です。</SLS_AutoVents.description>
+  <Blueprint_SLS_AutoVents.label>自動換気口  (設計)</Blueprint_SLS_AutoVents.label>
+  <Frame_SLS_AutoVents.label>自動換気口  (施工)</Frame_SLS_AutoVents.label>
+  <Frame_SLS_AutoVents.description>室温を自動的に均一化して、室内に新鮮な空気を送るための自動通気口です。</Frame_SLS_AutoVents.description>
+
+
+  <!-- Auto Vents Over Wall -->
+
+  <SLS_AutoVents_OW.label>自動換気口 ワイド</SLS_AutoVents_OW.label>
+  <SLS_AutoVents_OW.description>室温を自動的に均一化し、厚い壁を通して室内に新鮮な空気を送るための自動通気口です。</SLS_AutoVents_OW.description>
+  <Blueprint_SLS_AutoVents_OW.label>自動換気口 ワイド (設計)</Blueprint_SLS_AutoVents_OW.label>
+  <Frame_SLS_AutoVents_OW.label>自動換気口 ワイド (施工)</Frame_SLS_AutoVents_OW.label>
+  <Frame_SLS_AutoVents_OW.description>室温を自動的に均一化し、厚い壁を通して室内に新鮮な空気を送るための自動通気口です。</Frame_SLS_AutoVents_OW.description>
+
+</LanguageData>
