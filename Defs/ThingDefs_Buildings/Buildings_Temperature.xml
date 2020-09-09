@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-  <ThingDef ParentName="BuildingBase">
-    <defName>SLS_AutoVents</defName>
-    <label>auto vent</label>
-    <description>An automatic vent for equalizing the temperature automatically and make sure your rooms stay.</description>
+  <ThingDef ParentName="BuildingBase" Name="SLS_AutoVentsBase" Abstract="True">
     <thingClass>AutoVents.Building_AutomaticVent</thingClass>
     <graphicData>
-      <texPath>Things/Building/Misc/TempControl/AutoVent</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
       <damageData>
         <cornerTL>Damage/Corner</cornerTL>
@@ -15,33 +11,16 @@
         <cornerBR>Damage/Corner</cornerBR>
       </damageData>
     </graphicData>
-    <altitudeLayer>Building</altitudeLayer>
-    <passability>Impassable</passability>
-    <blockWind>true</blockWind>
-    <fillPercent>1</fillPercent>
-    <coversFloor>true</coversFloor>
-    <blockLight>true</blockLight>
-    <castEdgeShadows>true</castEdgeShadows>
     <canOverlapZones>false</canOverlapZones>
-    <staticSunShadowHeight>1.0</staticSunShadowHeight>
-    <statBases>
-      <WorkToBuild>400</WorkToBuild>
-      <MaxHitPoints>100</MaxHitPoints>
-      <Flammability>1.0</Flammability>
-    </statBases>
     <tickerType>Rare</tickerType>
     <costList>
       <Steel>40</Steel>
       <ComponentIndustrial>1</ComponentIndustrial>
     </costList>
-    <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
     <placeWorkers>
       <li>PlaceWorker_Vent</li>
     </placeWorkers>
     <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
-    <building>
-      <canPlaceOverWall>true</canPlaceOverWall>
-    </building>
     <researchPrerequisites>
       <li>ComplexFurniture</li>
     </researchPrerequisites>
@@ -55,5 +34,59 @@
       <li Class="CompProperties_Breakdownable"/>
       <li Class="AutoVents.CompProperties_AirFlow"/>
     </comps>
+  </ThingDef>
+
+  <!-- Auto Vents -->
+  <ThingDef ParentName="SLS_AutoVentsBase">
+    <defName>SLS_AutoVents</defName>
+    <label>auto vent</label>
+    <description>An automatic vent for equalizing the temperature automatically and making sure your rooms stay fresh.</description>
+    <graphicData>
+      <texPath>Things/Building/Misc/TempControl/AutoVent</texPath>
+    </graphicData>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>Impassable</passability>
+    <blockWind>true</blockWind>
+    <fillPercent>1</fillPercent>
+    <coversFloor>true</coversFloor>
+    <blockLight>true</blockLight>
+    <castEdgeShadows>true</castEdgeShadows>
+    <staticSunShadowHeight>1.0</staticSunShadowHeight>
+    <statBases>
+      <WorkToBuild>400</WorkToBuild>
+      <MaxHitPoints>100</MaxHitPoints>
+      <Flammability>1.0</Flammability>
+    </statBases>
+    <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
+    <building>
+      <canPlaceOverWall>true</canPlaceOverWall>
+    </building>
+  </ThingDef>
+
+  <!-- Auto Vents Over Wall -->
+  <ThingDef ParentName="SLS_AutoVentsBase">
+    <defName>SLS_AutoVents_OW</defName>
+    <label>auto vent ow</label>
+    <description>An automatic overwall vent for equalizing the temperature automatically and making sure your rooms stay fresh.</description>
+    <graphicData>
+      <texPath>Things/Building/Misc/TempControl/AutoVentOW</texPath>
+    </graphicData>
+    <altitudeLayer>BuildingOnTop</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+    <blockWind>false</blockWind>
+    <fillPercent>0.99</fillPercent>
+    <coversFloor>false</coversFloor>
+    <blockLight>false</blockLight>
+    <castEdgeShadows>false</castEdgeShadows>
+    <statBases>
+      <WorkToBuild>500</WorkToBuild>
+      <MaxHitPoints>75</MaxHitPoints>
+      <Flammability>1.0</Flammability>
+    </statBases>
+    <building>
+      <canPlaceOverWall>true</canPlaceOverWall>
+      <isEdifice>false</isEdifice>
+    </building>
+    <clearBuildingArea>false</clearBuildingArea>
   </ThingDef>
 </Defs>
