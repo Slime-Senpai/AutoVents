@@ -69,7 +69,7 @@
     <label>auto vent ow</label>
     <description>An automatic overwall vent for equalizing the temperature automatically and making sure your rooms stay fresh.</description>
     <graphicData>
-      <texPath>Things/Building/Misc/TempControl/AutoVentOW</texPath>
+      <texPath>Things/Building/Misc/TempControl/AutoVent</texPath>
     </graphicData>
     <altitudeLayer>BuildingOnTop</altitudeLayer>
     <passability>PassThroughOnly</passability>
