@@ -3,46 +3,68 @@ using Verse;
 
 namespace AutoVents
 {
-    public class Building_AutomaticVent : Building_TempControl
-    {
+	public class Building_AutomaticVent : Building_TempControl
+	{
 		private Comp_AirFlow airFlowComp;
+		
+		private VacuumComponent intVacuum;
 
 		public override void SpawnSetup(Map map, bool respawningAfterLoad)
-        {
-            base.SpawnSetup(map, respawningAfterLoad);
+		{
+			base.SpawnSetup(map, respawningAfterLoad);
 			airFlowComp = GetComp<Comp_AirFlow>();
 		}
+		
+		private VacuumComponent Vacuum => intVacuum ?? (intVacuum = Map.GetComponent<VacuumComponent>());
+
+		public override bool ExchangeVacuum => base.ExchangeVacuum || airFlowComp.isAirFlowing;
 
 		public override void TickRare()
 		{
 			if (!compPowerTrader.PowerOn || !FlickUtility.WantsToBeOn(this))
 			{
-				airFlowComp.isAirFlowing = false;
+				HandleAirFlowChange(false);
 
 				return;
 			}
 
-			IntVec3 intVec = Position + IntVec3.South.RotatedBy(Rotation);
-			IntVec3 intVec2 = Position + IntVec3.North.RotatedBy(Rotation);
+			var intVec = Position + IntVec3.South.RotatedBy(Rotation);
+			var intVec2 = Position + IntVec3.North.RotatedBy(Rotation);
 
 			if (intVec2.Impassable(Map) || intVec.Impassable(Map))
 			{
-				airFlowComp.isAirFlowing = false;
+				HandleAirFlowChange(false);
 
 				return;
 			}
-			float temperatureRed = intVec2.GetTemperature(Map);
-			float temperature = intVec.GetTemperature(Map);
 
-			if (temperatureRed == airFlowComp.targetTemperature || temperatureRed == temperature || (temperatureRed < airFlowComp.targetTemperature && temperatureRed > temperature) || (temperatureRed > airFlowComp.targetTemperature && temperatureRed < temperature))
-            {
-				airFlowComp.isAirFlowing = false;
+			var temperatureRed = intVec2.GetTemperature(Map);
+			var temperature = intVec.GetTemperature(Map);
+
+			if (temperatureRed == airFlowComp.targetTemperature || temperatureRed == temperature ||
+			    (temperatureRed < airFlowComp.targetTemperature && temperatureRed > temperature) ||
+			    (temperatureRed > airFlowComp.targetTemperature && temperatureRed < temperature))
+			{
+				HandleAirFlowChange(false);
 
 				return;
-            }
+			}
 
-			GenTemperature.EqualizeTemperaturesThroughBuilding(this, 14f, twoWay: true);
-			airFlowComp.isAirFlowing = true;
+			HandleAirFlowChange(true);
+
+			GenTemperature.EqualizeTemperaturesThroughBuilding(this, 14f, true);
+			Map.gasGrid.EqualizeGasThroughBuilding(this, true);
+		}
+		
+		private void HandleAirFlowChange(bool newAirFlow)
+		{
+			if (airFlowComp.isAirFlowing == newAirFlow)
+			{
+				return;
+			}
+			
+			airFlowComp.isAirFlowing = newAirFlow;
+			Vacuum.Dirty();
 		}
 	}
 }
